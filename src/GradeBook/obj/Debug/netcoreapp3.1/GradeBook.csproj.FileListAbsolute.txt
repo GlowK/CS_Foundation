@@ -1,0 +1,13 @@
+/home/goldrush/Project_C#/gradebook/src/GradeBook/bin/Debug/netcoreapp3.1/GradeBook
+/home/goldrush/Project_C#/gradebook/src/GradeBook/bin/Debug/netcoreapp3.1/GradeBook.deps.json
+/home/goldrush/Project_C#/gradebook/src/GradeBook/bin/Debug/netcoreapp3.1/GradeBook.runtimeconfig.json
+/home/goldrush/Project_C#/gradebook/src/GradeBook/bin/Debug/netcoreapp3.1/GradeBook.runtimeconfig.dev.json
+/home/goldrush/Project_C#/gradebook/src/GradeBook/bin/Debug/netcoreapp3.1/GradeBook.dll
+/home/goldrush/Project_C#/gradebook/src/GradeBook/bin/Debug/netcoreapp3.1/GradeBook.pdb
+/home/goldrush/Project_C#/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.csprojAssemblyReference.cache
+/home/goldrush/Project_C#/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.AssemblyInfoInputs.cache
+/home/goldrush/Project_C#/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.AssemblyInfo.cs
+/home/goldrush/Project_C#/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.csproj.CoreCompileInputs.cache
+/home/goldrush/Project_C#/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.dll
+/home/goldrush/Project_C#/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.pdb
+/home/goldrush/Project_C#/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.genruntimeconfig.cache
