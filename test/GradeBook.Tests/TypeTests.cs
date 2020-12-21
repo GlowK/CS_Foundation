@@ -11,7 +11,8 @@ namespace GradeBook.Tests
             //arange and act 
             var x = GetInt();
             SetInt(x);
-            //asserT
+            //assert
+            //test gita
 
             Assert.Equal(3,x);
         }
