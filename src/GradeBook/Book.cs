@@ -2,43 +2,83 @@ using System.Collections.Generic;
 using System;
 
 namespace GradeBook{
-    public class Book{
-        public List<double> grades;
-        public string Name;
 
-        public Book(string name){
+    public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+    public interface IBook
+    {
+        void AddGrade(double grade);
+        Statistics GetStatistics();
+        string Name { get;}
+        event GradeAddedDelegate GradeAdded;
+        void ShowStats(Statistics results);
+    }
+
+
+
+    public abstract class Book : NamedObject, IBook
+    {
+        protected Book(string name) : base(name)
+        {
+        }
+        public abstract event GradeAddedDelegate GradeAdded;
+        public abstract void AddGrade(double grade);
+        public abstract Statistics GetStatistics();
+        public abstract void ShowStats(Statistics results);
+    }
+
+    public class InMemoryBook : Book
+    {
+        public List<double> grades;
+        public override event GradeAddedDelegate GradeAdded;
+        public InMemoryBook(string name) : base(name) 
+        {
             grades = new List<double>();
             Name = name;
         }
 
-        public void AddGrade(double grade){
+        public void AddGrade(char letter){
+            switch(letter){
+                case 'A':
+                    AddGrade(90);
+                    break;
+                case 'B':
+                    AddGrade(80);
+                    break;
+                case 'C':
+                    AddGrade(70);
+                    break;
+                default:
+                    System.Console.WriteLine("lol");
+                    break;
+            }
+        }
+
+        public override void AddGrade(double grade){
             if(grade <= 100 && grade >= 0){
                 this.grades.Add(grade);
+                if(GradeAdded != null){
+                    GradeAdded(this, new EventArgs());
+                }
             }else{
-                System.Console.WriteLine("Invalid value");
+                throw new ArgumentException($"Invalid {nameof(grade)}");
             }   
         }
 
-        public Statistics GetStats(){
+        public override Statistics GetStatistics(){
             var result = new Statistics();
-            result.Avarage = 0.0;
-            result.High = double.MinValue;
-            result.Low = double.MaxValue;
-
-            foreach(var grade in this.grades){
-                result.High = System.Math.Max(grade, result.High);
-                result.Low = System.Math.Min(grade, result.Low);
-                result.Avarage += grade;
+            for(var index = 0; index < grades.Count; index++){
+                result.Add(grades[index]);
             }
-
-            result.Avarage = result.Avarage/grades.Count;
             return result;
         }
 
-        public void ShowStats(Statistics result){
+        public override void ShowStats(Statistics result){
+            System.Console.WriteLine($"For the book named {this.Name}");
             System.Console.WriteLine($"Avarage = {result.Avarage}");
-            System.Console.WriteLine($"Najnizsza = {result.Low}");
-            System.Console.WriteLine($"Najwyzsza = {result.High}");
+            System.Console.WriteLine($"Low = {result.Low}");
+            System.Console.WriteLine($"High = {result.High}");
+            System.Console.WriteLine($"The letter grade is = {result.Letter}");
         }
     }
 }

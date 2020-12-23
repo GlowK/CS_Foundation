@@ -3,18 +3,51 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
+
     class Program
     {
         static void Main(string[] args)
         {
-            var book = new Book("Kamilek's Grades Book");
-            book.AddGrade(89.1);
-            book.AddGrade(90.5);
-            book.AddGrade(77.5);
+            IBook book = new DiskBook("Kamilek's Grades Book");
+            book.GradeAdded += OneGradeAdded;
 
-            var stats = book.GetStats();
+            EnterGrades(book);
+            var stats = book.GetStatistics();
             book.ShowStats(stats);
 
+        }
+
+        private static void EnterGrades(IBook book)
+        {
+            var done = false;
+
+            while (!done)
+            {
+                System.Console.WriteLine("Please enter grade or pres q to quite");
+                var input = Console.ReadLine();
+                if (input == "q")
+                {
+                    done = true;
+                    continue;
+                }
+                try
+                {
+                    var grade = double.Parse(input);
+                    book.AddGrade(grade);
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    System.Console.WriteLine("**");
+                }
+            }
+        }
+
+        static void OneGradeAdded(object sender, EventArgs e){
+            System.Console.WriteLine("A grade has been aded");
         }
     }
 }
