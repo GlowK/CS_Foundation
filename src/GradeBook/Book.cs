@@ -3,7 +3,7 @@ using System;
 
 namespace GradeBook{
     public class Book{
-        private List<double> grades;
+        public List<double> grades;
         public string Name;
 
         public Book(string name){
@@ -12,7 +12,11 @@ namespace GradeBook{
         }
 
         public void AddGrade(double grade){
-            this.grades.Add(grade);
+            if(grade <= 100 && grade >= 0){
+                this.grades.Add(grade);
+            }else{
+                System.Console.WriteLine("Invalid value");
+            }   
         }
 
         public Statistics GetStats(){

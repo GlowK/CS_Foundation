@@ -12,7 +12,6 @@ namespace GradeBook.Tests
             var x = GetInt();
             SetInt(x);
             //assert
-            //test gita
 
             Assert.Equal(3,x);
         }
@@ -25,6 +24,20 @@ namespace GradeBook.Tests
         private int GetInt()
         {
             return 3;
+        }
+
+        [Fact]
+        public void StringBehaveLIkeValueType(){
+            string name = "kamil";
+            name = MakeUpperCase(name);
+
+            Assert.Equal("KAMIL",name);
+            
+        }
+
+        private string MakeUpperCase(string parameter)
+        {
+           return parameter.ToUpper();
         }
 
         [Fact]
@@ -98,6 +111,18 @@ namespace GradeBook.Tests
             Assert.Equal("Book 1", book1.Name);
             Assert.Equal("Book 2", book2.Name);
            
+        }
+        [Fact]
+        public void AddGradesOnlyInRange0_100(){
+            //arange
+            Book book = new Book("First");
+            //act
+            book.AddGrade(5);
+            book.AddGrade(105);
+            book.AddGrade(6);
+            //Assert
+            Assert.Equal(5,book.grades[0]);
+            Assert.Equal(6,book.grades[1]);
         }
 
         [Fact]
